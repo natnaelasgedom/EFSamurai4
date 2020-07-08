@@ -10,6 +10,9 @@ namespace EFSamurai.Data
         public DbSet<Quote> Quotes { get; set; }
         public DbSet<SecretIdentity> SecretIdentities { get; set; }
         public DbSet<SamuraiBattle> SamuraiBattles { get; set; }
+        public DbSet<BattleLog> BattleLogs { get; set; }
+        public DbSet<BattleEvent> BattleEvents { get; set; }
+
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

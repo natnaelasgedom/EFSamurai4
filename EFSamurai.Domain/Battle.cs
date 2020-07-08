@@ -12,5 +12,6 @@ namespace EFSamurai.Domain
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public ICollection<SamuraiBattle> SamuraiBattle { get; set; }
+        public BattleLog BattleLog { get; set; }
     }
 }
