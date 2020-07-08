@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace EFSamurai.Domain
 {
@@ -6,5 +8,7 @@ namespace EFSamurai.Domain
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public ICollection<Quote> QuotesCollection { get; set; }
+        public HairStyle? HairStyle { get; set; }
     }
 }
