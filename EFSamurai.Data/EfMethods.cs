@@ -339,7 +339,20 @@ namespace EFSamurai.Data
 
         public static ICollection<string> ListAllBattles(DateTime from, DateTime to, bool? isBrutal)
         {
+            ICollection<string> output = new List<string>();
+            using (var context = new SamuraiContext())
+            {
+                var relevantBattles = context.Battles.Where(b => b.StartDate > from && b.EndDate < to);
+                foreach (var battle in relevantBattles)
+                {
+                    if (isBrutal == null || battle.IsBrutal == isBrutal)
+                    {
+                        output.Add($"<{battle.Name}> was{(battle.IsBrutal ? "" : " not")} a brutal battle within the period");
+                    }
+                }
+            }
 
+            return output;
         }
 
         #endregion Read
