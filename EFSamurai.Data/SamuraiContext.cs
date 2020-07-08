@@ -9,6 +9,8 @@ namespace EFSamurai.Data
         public DbSet<Samurai> Samurais { get; set; }
         public DbSet<Quote> Quotes { get; set; }
         public DbSet<SecretIdentity> SecretIdentities { get; set; }
+        public DbSet<SamuraiBattle> SamuraiBattles { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -16,6 +18,11 @@ namespace EFSamurai.Data
                 @"Server = (localdb)\MSSQLLocalDB; " +
                 @"Database = EFSamurai4; " +
                 @"Trusted_Connection = True; ");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SamuraiBattle>().HasKey(sb => new {sb.BattleID, sb.SamuraiID});
         }
     }
 
