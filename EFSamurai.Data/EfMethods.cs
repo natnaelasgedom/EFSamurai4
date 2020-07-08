@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 using EFSamurai.Domain;
 using Microsoft.EntityFrameworkCore;
 
@@ -356,6 +357,26 @@ namespace EFSamurai.Data
         }
 
         #endregion Read
+
+        #region Advanced Querys
+
+        public static ICollection<string> AllSamuraiNamesWithAliases()
+        {
+            ICollection<string> output = new List<string>();
+            using (var context = new SamuraiContext())
+            {
+                var samuraisWithAliases = context.Samurais
+                    .Include(s => s.SecretIdentity);
+                foreach (var samurai in samuraisWithAliases)
+                {
+                    string realName = samurai.SecretIdentity == null ? "Has no alias" : samurai.SecretIdentity.RealName;
+                    output.Add($"<{samurai.Name}> alias <{realName}>");
+                }
+            }
+            return output;
+        }
+
+        #endregion Advanced Querys
         public static void WriteOut(ICollection<string> inList)
         {
             foreach (string s in inList)
