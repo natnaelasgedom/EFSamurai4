@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFSamurai", "EFSamurai\EFSamurai.csproj", "{D342D4FD-1383-4886-AFC1-420F5D887C64}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFSamurai.Data", "EFSamurai.Data\EFSamurai.Data.csproj", "{27FADD28-69EF-42C4-B3A5-274D9A4E95FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFSamurai.Domain", "EFSamurai.Domain\EFSamurai.Domain.csproj", "{7AFDB4FF-84D3-404C-B4DE-CC171644E95D}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D342D4FD-1383-4886-AFC1-420F5D887C64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D342D4FD-1383-4886-AFC1-420F5D887C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D342D4FD-1383-4886-AFC1-420F5D887C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D342D4FD-1383-4886-AFC1-420F5D887C64}.Release|Any CPU.Build.0 = Release|Any CPU
 		{27FADD28-69EF-42C4-B3A5-274D9A4E95FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{27FADD28-69EF-42C4-B3A5-274D9A4E95FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27FADD28-69EF-42C4-B3A5-274D9A4E95FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
