@@ -490,6 +490,53 @@ namespace EFSamurai.Data
 
         #endregion WriteOut-Methods
 
+        public static string[] GetAllSamuraiNames()
+        {
+            return ListAllSamuraiNames().ToArray();
+        }
 
+        public static int AddOneSamurai(Samurai samurai)
+        {
+            using (var context = new SamuraiContext())
+            {
+                context.Samurais.Add(samurai);
+                context.SaveChanges();
+            }
+
+            return samurai.ID;
+        }
+
+
+        public static void UpdateSamuraiSetSecretIdentity(int samuraiId, string newRealName)
+        {
+            using (var context = new SamuraiContext())
+            {
+                var relevantSamurai = context.Samurais
+                    .Include(s => s.SecretIdentity)
+                    .Single(s => s.ID == samuraiId);
+                if (relevantSamurai.SecretIdentity != null)
+                {
+                    relevantSamurai.SecretIdentity.RealName = newRealName;
+                }
+                else
+                {
+                    relevantSamurai.SecretIdentity = new SecretIdentity {RealName = newRealName};
+                }
+
+                context.Samurais.Update(relevantSamurai);
+                context.SaveChanges();
+
+            }
+        }
+
+        public static Samurai GetSamurai(int id)
+        {
+            using (var context = new SamuraiContext())
+            {
+                return context.Samurais
+                    .Include(s => s.SecretIdentity)
+                    .Single(s => s.ID == id);
+            }
+        }
     }
 }
