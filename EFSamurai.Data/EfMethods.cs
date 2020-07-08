@@ -376,6 +376,33 @@ namespace EFSamurai.Data
             return output;
         }
 
+        public static ICollection<string> ListAllBattles_WithLog(DateTime from, DateTime to, bool isBrutal)
+        {
+            ICollection<string> output = new List<string>();
+            using (var context = new SamuraiContext())
+            {
+                output.Add($"----------------------------------------------");
+
+                var battlesWithLogAndEvents = context.Battles
+                    .Include(b => b.BattleLog)
+                    .ThenInclude(bl => bl.BattleEvent)
+                    .Where(b => b.StartDate > from && b.EndDate < to && b.IsBrutal == isBrutal);
+                foreach (var battle in battlesWithLogAndEvents)
+                {
+                    string s = $"{"Name of battle", -15} {battle.Name, -15}\n" +
+                               $"{"Log name",-15} {battle.BattleLog.Name,-15}\n";
+                    foreach (var e in battle.BattleLog.BattleEvent)
+                    {
+                        s += $"{"Event",-15} {e.Summary,-15}( Order: {e.Order}, Battle: {battle.Name})\n";
+                    }
+                    output.Add(s);
+                    output.Add($"----------------------------------------------");
+                }
+
+            }
+            return output;
+        }
+
         #endregion Advanced Querys
         public static void WriteOut(ICollection<string> inList)
         {

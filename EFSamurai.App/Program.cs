@@ -28,7 +28,9 @@ namespace EFSamurai.App
             //EfMethods.WriteOut(EfMethods.ListAllQuotesOfType(QuoteStyle.Cheesy));
             //EfMethods.WriteOut(EfMethods.ListAllQuotesOfType_WithSamurai(QuoteStyle.Lame));
             //EfMethods.WriteOut(EfMethods.ListAllBattles(new DateTime(1589,1,1), new DateTime(1620,1,1), null));
-            EfMethods.WriteOut(EfMethods.AllSamuraiNamesWithAliases());
+            //EfMethods.WriteOut(EfMethods.AllSamuraiNamesWithAliases());
+            EfMethods.WriteOut(EfMethods.ListAllBattles_WithLog(new DateTime(1589, 1, 1), new DateTime(1620, 1, 1), false));
+
         }
     }
 }
