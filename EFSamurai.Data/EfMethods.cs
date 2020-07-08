@@ -403,7 +403,61 @@ namespace EFSamurai.Data
             return output;
         }
 
+        public static ICollection<SamuraiInfo> GetSamuraiInfo()
+        {
+            ICollection<SamuraiInfo> output = new List<SamuraiInfo>();
+
+            using (var context = new SamuraiContext())
+            {
+                var allSamuraisWithExtraSauce = context.Samurais
+                    .Include(s => s.SecretIdentity)
+                    .Include(s => s.SamuraiBattle)
+                    .ThenInclude(sb => sb.Battle);
+                foreach (var samurai in allSamuraisWithExtraSauce)
+                {
+                    string name = samurai.Name;
+                    string realName = samurai.SecretIdentity == null ? "No Alias" : samurai.SecretIdentity.RealName;
+                    string battleNames = "";
+
+                    foreach (var sb in samurai.SamuraiBattle)
+                    {
+                        battleNames += (samurai.SamuraiBattle.Count == 1) ? $"{sb.Battle.Name}" : $"{sb.Battle.Name},";
+                    }
+
+                    output.Add(new SamuraiInfo
+                    {
+                        Name = name,
+                        RealName = realName,
+                        BattleNames = battleNames
+                    });
+                }
+            }
+            return output;
+        }
+
+        public static ICollection<string> GetBattlesForSamurai(string samuraiName)
+        {
+            ICollection<string> output = new List<string>();
+            using (var context = new SamuraiContext())
+            {
+                output.Add($"{"ID", -20} {"Name", -20}\n" +
+                           $"-------------------------------------");
+                var correctSamurai = context.Samurais
+                    .Include(s => s.SamuraiBattle)
+                    .ThenInclude(sb => sb.Battle)
+                    .Single(s => s.Name == samuraiName);
+                foreach (var sb in correctSamurai.SamuraiBattle)
+                {
+                    output.Add($"{sb.BattleID,-20} {sb.Battle.Name,-20}");
+                }
+            }
+
+            return output;
+        }
+
         #endregion Advanced Querys
+
+        #region WriteOut-Methods
         public static void WriteOut(ICollection<string> inList)
         {
             foreach (string s in inList)
@@ -423,6 +477,19 @@ namespace EFSamurai.Data
         {
             Console.WriteLine(s);
         }
+
+        public static void WriteOut(ICollection<SamuraiInfo> inList)
+        {
+            WriteOut($"{"Name", -20} {"RealName", -20} {"BattleNames", -20}\n" +
+                     $"----------------------------------------------------");
+            foreach (var samuraiInfo in inList)
+            {
+                WriteOut($"{samuraiInfo.Name, -20} {samuraiInfo.RealName, -20} {samuraiInfo.BattleNames, -20}");
+            }
+        }
+
+        #endregion WriteOut-Methods
+
 
     }
 }

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFSamurai.Domain", "EFSamur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFSamurai.App", "EFSamurai.App\EFSamurai.App.csproj", "{F3DC861D-B763-40C8-9EF1-2ECC50901244}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFSamurai.NUnitTest", "EFSamurai.NUnitTest\EFSamurai.NUnitTest.csproj", "{EAFB8D17-231C-47D5-AE50-4D4AFA2CB901}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F3DC861D-B763-40C8-9EF1-2ECC50901244}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3DC861D-B763-40C8-9EF1-2ECC50901244}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3DC861D-B763-40C8-9EF1-2ECC50901244}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAFB8D17-231C-47D5-AE50-4D4AFA2CB901}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAFB8D17-231C-47D5-AE50-4D4AFA2CB901}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAFB8D17-231C-47D5-AE50-4D4AFA2CB901}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAFB8D17-231C-47D5-AE50-4D4AFA2CB901}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
