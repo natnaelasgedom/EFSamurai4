@@ -28,5 +28,4 @@ namespace EFSamurai.Data
             modelBuilder.Entity<SamuraiBattle>().HasKey(sb => new {sb.BattleID, sb.SamuraiID});
         }
     }
-
 }
